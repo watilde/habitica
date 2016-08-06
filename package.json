@@ -102,7 +102,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && gulp test",
+    "test": "gulp test",
     "test:api-v3": "gulp test:api-v3",
     "test:api-v3:unit": "gulp test:api-v3:unit",
     "test:api-v3:integration": "gulp test:api-v3:integration",
