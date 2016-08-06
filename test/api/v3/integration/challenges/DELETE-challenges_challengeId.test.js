@@ -8,8 +8,8 @@ import {
 } from '../../../../helpers/api-v3-integration.helper';
 import { v4 as generateUUID } from 'uuid';
 
-describe('DELETE /challenges/:challengeId', () => {
-  it.only('returns error when challengeId is not a valid UUID', async () => {
+describe.only('DELETE /challenges/:challengeId', () => {
+  it('returns error when challengeId is not a valid UUID', async () => {
     let user = await generateUser();
 
     user.undefinedMethodToIntentionallyThrow();
@@ -23,6 +23,8 @@ describe('DELETE /challenges/:challengeId', () => {
 
   it('returns error when challengeId is not for a valid challenge', async () => {
     let user = await generateUser();
+
+    throw new Error('throw it!');
 
     await expect(user.del(`/challenges/${generateUUID()}`)).to.eventually.be.rejected.and.eql({
       code: 404,
@@ -43,6 +45,8 @@ describe('DELETE /challenges/:challengeId', () => {
       groupLeader = populatedGroup.groupLeader;
       group = populatedGroup.group;
 
+      group.foo.bar.baz;
+
       challenge = await generateChallenge(groupLeader, group);
 
       await groupLeader.post(`/tasks/challenge/${challenge._id}`, [
@@ -54,6 +58,8 @@ describe('DELETE /challenges/:challengeId', () => {
 
     it('returns an error when user doesn\'t have permissions to delete the challenge', async () => {
       let user = await generateUser();
+
+      expect(true).to.be.false;
 
       await expect(user.del(`/challenges/${challenge._id}`)).to.eventually.be.rejected.and.eql({
         code: 401,
