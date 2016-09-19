@@ -61,11 +61,15 @@ script(type='text/ng-template', id='modals/delete.html')
   .modal-header
     h4=env.t('deleteAccount')
   .modal-body
-    p!=env.t('deleteLocalAccountText')
+    p: strong=env.t('deleteLocalAccountText')
     br
     .row
       .col-md-6
-        input.form-control(type='password', ng-model='_deleteAccount')
+        input.form-control(type='password', ng-model='_deleteAccount', placeholder=env.t('password'))
+    br
+    .row
+      .col-xs-12.form-group
+        textarea.form-control(ng-model='feedback', placeholder=env.t('feedback'), rows=4)
   .modal-footer
     button.btn.btn-default(ng-click='$close()')=env.t('neverMind')
-    button.btn.btn-danger(ng-disabled='!_deleteAccount', ng-click='$close(); delete(_deleteAccount)')=env.t('deleteDo')
+    button.btn.btn-danger(ng-disabled='!_deleteAccount', ng-click='$close(); delete(_deleteAccount, feedback)')=env.t('deleteDo')

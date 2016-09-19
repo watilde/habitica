@@ -223,6 +223,10 @@ api.deleteUser = {
 
     await user.remove();
 
+    if (typeof req.body.feedback === 'string') {
+      // Send feedback via email
+    }
+
     res.respond(200, {});
   },
 };
