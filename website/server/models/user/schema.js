@@ -541,6 +541,7 @@ let schema = new Schema({
   pushDevices: [PushDeviceSchema],
   _ABtest: {type: String},
   webhooks: [WebhookSchema],
+  loginIncentives: {type: Number, default: 0},
 }, {
   strict: true,
   minimize: false, // So empty objects are returned
